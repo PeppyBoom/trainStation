@@ -21,7 +21,8 @@ class uuid extends UuidHelpers
      * @param int $subDomain
      * @return string
      */
-    public static function binUuid($subDomain = self::SUBDOMAIN_DEFAULT){
+    public static function binUuid($subDomain = self::SUBDOMAIN_DEFAULT)
+    {
         return pack("h*", str_replace('-', '', parent::uuid($subDomain)));
     }
 
@@ -29,7 +30,8 @@ class uuid extends UuidHelpers
      * @param $uuid
      * @return string
      */
-    public static function uuid2bin($uuid){
+    public static function uuid2bin($uuid)
+    {
         return pack("h*", str_replace('-', '', $uuid));
     }
 
@@ -37,8 +39,9 @@ class uuid extends UuidHelpers
      * @param $bin
      * @return mixed
      */
-    public static function bin2uuid($bin){
-        $uuid = unpack("h*",$bin);
+    public static function bin2uuid($bin)
+    {
+        $uuid = unpack("h*", $bin);
         $uuid = preg_replace("/([0-9a-f]{8})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{4})([0-9a-f]{12})/", "$1-$2-$3-$4-$5", $uuid);
         $uuid = array_merge($uuid);
         return $uuid[0];
@@ -48,7 +51,8 @@ class uuid extends UuidHelpers
      * @param $uuid
      * @return int
      */
-    public static function isUuid($uuid) {
+    public static function isUuid($uuid)
+    {
         return preg_match("/([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{12})/", $uuid);
     }
 
@@ -56,7 +60,8 @@ class uuid extends UuidHelpers
      * @param $bin
      * @return int
      */
-    public static function isBinUuid($bin) {
+    public static function isBinUuid($bin)
+    {
         $uuid = self::bin2uuid($bin);
         return self::isUuid($uuid);
     }
